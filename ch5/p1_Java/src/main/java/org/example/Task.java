@@ -23,6 +23,7 @@ public class Task {
     private int tid;
     private int priority;
     private int burst;
+    private int waitingTime;
 
     /**
      * We use an atomic integer to assign each task a unique task id.
@@ -35,6 +36,14 @@ public class Task {
         this.burst = burst;
 
         this.tid = tidAllocator.getAndIncrement();
+    }
+
+    public void addWaitingTime(int waitingTime) {
+        this.waitingTime += waitingTime;
+    }
+
+    public int getWaitingTime() {
+        return waitingTime;
     }
 
     /**
