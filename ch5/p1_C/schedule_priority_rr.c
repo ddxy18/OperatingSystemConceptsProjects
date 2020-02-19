@@ -9,6 +9,12 @@
 #include "list.h"
 
 struct node **head;
+int tid = 1;
+int size = 0;
+int averageTurnaroundTime = 0;
+int averageResponseTime = 0;
+int averageWaitingTime = 0;
+int timer = 0;
 
 void newInsert(struct node **head, Task *task) {
     int priority = task->priority;
@@ -58,6 +64,8 @@ void newDelete(struct node **head, Task *task) {
 }
 
 void add(char *name, int priority, int burst) {
+    size++;
+    averageWaitingTime += burst;
     if (head == NULL) {
         head = malloc(sizeof(struct node *) * MAX_PRIORITY);
     }
@@ -66,18 +74,34 @@ void add(char *name, int priority, int burst) {
     t->name = name;
     t->priority = priority;
     t->burst = burst;
+    t->tid = tid;
+    __sync_fetch_and_add(&tid, 1);
     newInsert(head, t);
 }
 
 void schedule() {
     for (int i = MAX_PRIORITY - 1; i >= 0; --i) {
+        int j = 0;
+        int iSize = 0;
+        struct node *tmp = head[i];
+        while (tmp != NULL) {
+            tmp = tmp->next;
+            iSize++;
+        }
         while (head[i] != NULL) {
             Task *t = head[i]->task;
+            if (j < iSize) {
+                averageResponseTime += timer;
+                j++;
+            }
             if (t->burst <= QUANTUM) {
                 run(t, t->burst);
+                timer += t->burst;
+                averageTurnaroundTime += timer;
                 newDelete(head, t);
             } else {
                 run(t, QUANTUM);
+                timer += QUANTUM;
 
                 Task *newTask = malloc(sizeof(Task));
                 newTask->name = t->name;
@@ -89,5 +113,8 @@ void schedule() {
             }
         }
     }
+    averageWaitingTime = (averageTurnaroundTime - averageWaitingTime) / size;
+    averageTurnaroundTime /= size;
+    averageResponseTime /= size;
     free(head);
 }
