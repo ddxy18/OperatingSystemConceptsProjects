@@ -5,6 +5,8 @@
 
 #define SIZE 100
 
+void execute_command();
+
 int main(int argc, char *argv[]) {
     if (argc != NUMBER_OF_RESOURCES + 1) {
         return 1;
@@ -59,7 +61,7 @@ void execute_command() {
     } else if (strcmp(type, "q\n") == 0) {
         for (int i = 0; i < NUMBER_OF_CUSTOMERS; ++i) {
             for (int j = 0; j < NUMBER_OF_RESOURCES; ++j) {
-                if (need[i][j != 0) {
+                if (need[i][j] != 0) {
                     printf("some tasks need to be completed\n");
                 }
                 if (allocation[i][j] != 0) {

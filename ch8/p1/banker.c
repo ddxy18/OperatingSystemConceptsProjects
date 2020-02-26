@@ -2,6 +2,8 @@
 #include "banker.h"
 
 int compare(int[], int[]);
+int safety_check();
+void print_array(char *description, int array[][NUMBER_OF_RESOURCES]);
 
 /* 
  * return 0 if all resources can be requested immediately,else return -1
