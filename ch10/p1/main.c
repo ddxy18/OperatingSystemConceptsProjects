@@ -39,5 +39,9 @@ int main(int argc, char *argv[])
     printf("%f", get_TLB_hit_rate());
     printf("\n");
 
+    printf("page replacement rate:");
+    printf("%f", get_page_replacement_rate());
+    printf("\n");
+
     return 0;
 }

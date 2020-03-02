@@ -4,7 +4,7 @@
 #include <stdio.h>
 
 #define FRAME_SIZE 256
-#define FRAME_QUANTITY 256
+#define FRAME_QUANTITY 128
 
 char physical_memory[FRAME_QUANTITY][FRAME_SIZE];
 

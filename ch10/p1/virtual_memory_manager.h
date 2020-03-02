@@ -21,4 +21,6 @@ double get_page_fault_rate();
 
 double get_TLB_hit_rate();
 
+double get_page_replacement_rate();
+
 #endif

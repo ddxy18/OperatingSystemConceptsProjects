@@ -4,7 +4,7 @@
 
 void free_list_init()
 {
-    free_list = malloc(sizeof(struct node *));
+    free_list = malloc(sizeof(struct frame_list *));
     free_list->frame_number = 0;
     free_list->next = NULL;
 
