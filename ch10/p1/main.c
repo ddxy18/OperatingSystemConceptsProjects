@@ -5,10 +5,8 @@
 
 #define LOGICAL_ADDRESS_LENGTH 10
 
-int main(int argc, char *argv[])
-{
-    if (argc != 2)
-    {
+int main(int argc, char *argv[]) {
+    if (argc != 2) {
         printf("invalid args");
         return 1;
     }
@@ -24,8 +22,7 @@ int main(int argc, char *argv[])
     out = fopen(output_file, "w");
 
     char logical_address[LOGICAL_ADDRESS_LENGTH];
-    while (fgets(logical_address, LOGICAL_ADDRESS_LENGTH, in) != NULL)
-    {
+    while (fgets(logical_address, LOGICAL_ADDRESS_LENGTH, in) != NULL) {
         int value = get_value(atoi(logical_address), out);
     }
     fclose(in);

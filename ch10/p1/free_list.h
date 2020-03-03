@@ -1,8 +1,7 @@
 #ifndef FREE_LIST_H
 #define FREE_LIST_H
 
-struct node
-{
+struct node {
     int frame_number;
     struct node *next;
 };

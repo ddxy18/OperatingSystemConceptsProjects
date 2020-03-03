@@ -13,6 +13,6 @@ int get_char(int physical_address);
 /* 
  * Load a page from the backing store and save them to the given frame.
  */
-void load_from_backing_store(int page_number, int frame_number, char *backing_store_file_name);
+void load_from_backing_store(int page_number, char *backing_store_file_name);
 
 #endif

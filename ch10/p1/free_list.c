@@ -2,15 +2,13 @@
 #include "free_list.h"
 #include "physical_memory.h"
 
-void free_list_init()
-{
+void free_list_init() {
     free_list = malloc(sizeof(struct frame_list *));
     free_list->frame_number = 0;
     free_list->next = NULL;
 
     struct node *tmp = free_list;
-    for (int i = 1; i < FRAME_QUANTITY; i++)
-    {
+    for (int i = 1; i < FRAME_QUANTITY; i++) {
         struct node *newnode = malloc(sizeof(struct node *));
         newnode->frame_number = i;
         newnode->next = NULL;
@@ -19,10 +17,8 @@ void free_list_init()
     }
 }
 
-struct node *remove_first_node()
-{
-    if (free_list == NULL)
-    {
+struct node *remove_first_node() {
+    if (free_list == NULL) {
         return NULL;
     }
 
@@ -32,27 +28,23 @@ struct node *remove_first_node()
     return tmp;
 }
 
-void add_free_frame(int frame_number)
-{
+void add_free_frame(int frame_number) {
     struct node *newnode = malloc(sizeof(struct node *));
     newnode->frame_number = frame_number;
     newnode->next = NULL;
 
-    if (free_list == NULL)
-    {
+    if (free_list == NULL) {
         free_list = newnode;
     }
 
-    if (free_list->frame_number > frame_number)
-    {
+    if (free_list->frame_number > frame_number) {
         newnode->next = free_list;
         free_list = newnode;
         return;
     }
 
     struct node *tmp = free_list;
-    while (tmp->next != NULL && tmp->next->frame_number < frame_number)
-    {
+    while (tmp->next != NULL && tmp->next->frame_number < frame_number) {
         tmp = tmp->next;
     }
     newnode->next = tmp->next;

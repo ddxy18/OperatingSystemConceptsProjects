@@ -7,8 +7,7 @@
 
 int TLB_hit_times;
 
-typedef struct
-{
+typedef struct {
     int page_number;
     int frame_number;
 } TLB_entry;
@@ -16,8 +15,7 @@ typedef struct
 /* 
  * to_be_replaced points to the entry which will be moved if a TLB miss happens
  */
-struct
-{
+struct {
     TLB_entry TLB_array[TLB_size];
     int to_be_replaced;
 } TLB;
@@ -36,6 +34,6 @@ int TLB_detect(int page_number);
 /* 
  * The TLB will choose the next entry in the TLB as the next one to be moved,say,set to_be_replaced+1.
  */
-void update_TLB(int page_number, int frame_number);
+void update_TLB(int page_number);
 
 #endif

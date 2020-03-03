@@ -1,30 +1,17 @@
 #ifndef FIFO_REPLACEMENT_H
 #define FIFO_REPLACEMENT_H
 
-struct replacement_node
-{
+struct r_node {
     int frame_number;
     int page_number;
-    struct replacement_node *next;
+    struct r_node *next;
 };
 
-typedef struct
-{
-    struct replacement_node *head;
-    struct replacement_node *rear;
-} replacement_queue;
+typedef struct {
+    struct r_node *head;
+    struct r_node *rear;
+} r_list;
 
-replacement_queue *queue;
-
-int page_replacement_times;
-
-void replacement_queue_init();
-
-/*
- * After calling the function,the user must free the returned node manually.
- */
-struct replacement_node *get_replaced_frame();
-
-void r_push(struct replacement_node *newnode);
+r_list *FIFO_list;
 
 #endif
