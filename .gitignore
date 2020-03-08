@@ -3,5 +3,4 @@ cmake-build-debug
 target
 *.iml
 .vscode
-*(unfinished)
 os_learning.code-workspace
